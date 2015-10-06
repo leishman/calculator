@@ -141,6 +141,7 @@ class CalculatorBrain {
     ///////////////////////////////
     
     func performOperation(op: String) {
+        
         internalProgram.append(op)
         if let operation = operations[op] {
             switch operation {
@@ -156,6 +157,9 @@ class CalculatorBrain {
                 handleEqualOperation()
             }
             // No default needed because cases are exhaustive here
+        } else {
+            
+            handleConstantOperation(op, value: variableNames[op] ?? 0.0)
         }
     }
     
@@ -172,9 +176,14 @@ class CalculatorBrain {
 
     // overload setOperand method by allowing string input for variables
     func setOperand(variableName: String) {
-        variableNames[variableName] = accumulator // TODO, maybe incorrect here
+        performOperation(variableName)
     }
     
+    func setVariable(name: String, value: Double) {
+        variableNames[name] = value
+        program = internalProgram
+        
+    }
     
     
     // called when a user presses the C button
@@ -184,6 +193,18 @@ class CalculatorBrain {
         pending = nil
         firstOperandString = " "
         secondOperandString = " "
+    }
+    
+    func clearVariables() {
+        variableNames.removeAll()
+    }
+    
+    func undo() {
+        
+        if internalProgram.count > 0 {
+            internalProgram.removeLast()
+        }
+        program = internalProgram
     }
     
     
@@ -225,6 +246,7 @@ class CalculatorBrain {
     
     // Handle binary operation
     private func handleBinaryOperation(op: String, function: (Double, Double) -> Double) {
+        
          if isPartialResult {
             firstOperandString += " \(accumulatorString) \(op) "
             secondOperandString = " "
@@ -250,7 +272,8 @@ class CalculatorBrain {
     
     // Handle Equal "operation"
     private func handleEqualOperation() {
-        if isPartialResult && secondOperandString == " "{
+        
+        if isPartialResult && secondOperandString == " " {
             secondOperandString = accumulatorString
         }
         executePendingBinaryOperation()

@@ -28,7 +28,8 @@ class ViewController: UIViewController {
             // setting value here each time is inefficient but
             // I didn't want to add an initializer to this class because I don't understand initializer intricacies well enough just yet
             numberFormatter.maximumFractionDigits = 6
-            return numericDisplay.text = numberFormatter.stringFromNumber(newValue)!
+            numberFormatter.minimumIntegerDigits = 1
+            return numericDisplay.text = numberFormatter.stringFromNumber(newValue)
         }
     }
     
@@ -59,6 +60,7 @@ class ViewController: UIViewController {
     
     // Event handler that executes when touching an operation button
     @IBAction func performOperation(sender: UIButton) {
+        
         // if user has entered digits before pressing operation button, send the operation to the brain
         // and set userInMiddleOfNumber to false
         if userInMiddleOfNumber {
@@ -70,34 +72,53 @@ class ViewController: UIViewController {
             brain.performOperation(mathSymbol)
         }
 
-        displayValue = brain.result
-        descriptionLabel.text = brain.description
-        pendingLabel.text = brain.isPartialResult ? " ... " : "  = "
+        rerender()
     }
 
     // Event handler for clear press
     @IBAction func clearButton(sender: UIButton) {
         displayValue = 0.0
         brain.clearState()
-        descriptionLabel.text = brain.description
+        brain.clearVariables()
         userInMiddleOfNumber = false
-        pendingLabel.text = " ... "
+        rerender()
     }
     
-    // Event handler for backspace button press
-    @IBAction func backspaceButton(sender: UIButton) {
+    // Event handler for undo button press
+    @IBAction func undoButton(sender: UIButton) {
         let text = numericDisplay.text!
 
-        if brain.isPartialResult && !userInMiddleOfNumber {
-            return
+        if userInMiddleOfNumber {
+            if text.characters.count <= 1 {
+                displayValue = 0.0
+                userInMiddleOfNumber = false
+            } else {
+                numericDisplay.text! = text.substringToIndex(text.endIndex.predecessor())
+            }
+        } else {
+            brain.undo()
+            rerender()
         }
 
-        if text.characters.count <= 1 {
-            displayValue = 0.0
-        } else {
-            numericDisplay.text! = text.substringToIndex(text.endIndex.predecessor())
-        }
     }
 
+    @IBAction func setVariable(sender: UIButton) {
+        brain.setVariable("M", value: displayValue)
+        rerender()
+        userInMiddleOfNumber = false
+    }
+    
+    @IBAction func variableEntered(sender: UIButton) {
+        brain.setOperand(sender.currentTitle!)
+        rerender()
+        userInMiddleOfNumber = false
+    }
+    
+    private func rerender() {
+        displayValue = brain.result
+        descriptionLabel.text = brain.description
+        pendingLabel.text = brain.isPartialResult ? " ... " : "  = "
+    }
+    
 }
 
