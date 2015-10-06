@@ -97,6 +97,36 @@ class CalculatorBrain {
         case Equals
     }
     
+
+    private var internalProgram =  [AnyObject]()
+    typealias PropertyList = AnyObject
+    
+    // program of calculator containing sequence of operators and operands (stored as array)
+    // setter will loop through program and revaluate
+    var program: PropertyList {
+        get {
+            return internalProgram
+        }
+        
+        set {
+            clearState()
+            if let arrayOfOps = newValue as? [AnyObject]{
+                // loop through and execute program
+                for op in arrayOfOps {
+                    if let operand = op as? Double {
+                        setOperand(operand)
+                    } else if let operation  = op as? String {
+                        performOperation(operation)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    // declare dictionary to store variables and their values
+    var variableNames: [String:Double] = [:]
+    
     
     /////////////////////////////////
     // Class initializer
@@ -111,6 +141,7 @@ class CalculatorBrain {
     ///////////////////////////////
     
     func performOperation(op: String) {
+        internalProgram.append(op)
         if let operation = operations[op] {
             switch operation {
             case .Constant(let value):
@@ -130,6 +161,7 @@ class CalculatorBrain {
     
     // called when user presses a numeric button
     func setOperand(number: Double) {
+        internalProgram.append(number)
         accumulator = number
         if pending == nil {
             firstOperandString = accumulatorString
@@ -137,9 +169,17 @@ class CalculatorBrain {
             secondOperandString = accumulatorString
         }
     }
+
+    // overload setOperand method by allowing string input for variables
+    func setOperand(variableName: String) {
+        variableNames[variableName] = accumulator // TODO, maybe incorrect here
+    }
+    
+    
     
     // called when a user presses the C button
     func clearState() {
+        internalProgram.removeAll()
         accumulator = 0.0
         pending = nil
         firstOperandString = " "
