@@ -141,7 +141,6 @@ class CalculatorBrain {
     ///////////////////////////////
     
     func performOperation(op: String) {
-        
         internalProgram.append(op)
         if let operation = operations[op] {
             switch operation {

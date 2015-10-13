@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6JC-qR-R7h">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Split View Controller-->
+        <scene sceneID="2hC-8Z-sik">
+            <objects>
+                <splitViewController id="6JC-qR-R7h" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="yo3-Jh-nkW" kind="relationship" relationship="masterViewController" id="13y-TX-Xq1"/>
+                        <segue destination="wC6-sT-UJN" kind="relationship" relationship="detailViewController" id="zX2-FU-eK3"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cc3-v3-aGM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-893" y="-80"/>
+        </scene>
+        <!--Graph-->
+        <scene sceneID="T6Q-m4-eVy">
+            <objects>
+                <viewController id="jfX-LO-UBl" customClass="GraphViewController" customModule="calculator_leishman" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oLr-jM-eo8"/>
+                        <viewControllerLayoutGuide type="bottom" id="waU-eW-k9p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KG8-4a-ouz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="XrT-rN-Lo1" customClass="GraphView" customModule="calculator_leishman" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XrT-rN-Lo1" firstAttribute="top" secondItem="KG8-4a-ouz" secondAttribute="top" id="PuU-pt-Zeg"/>
+                            <constraint firstItem="XrT-rN-Lo1" firstAttribute="leading" secondItem="KG8-4a-ouz" secondAttribute="leading" id="ZHp-uF-GTH"/>
+                            <constraint firstAttribute="trailing" secondItem="XrT-rN-Lo1" secondAttribute="trailing" id="oDf-NT-tBE"/>
+                            <constraint firstItem="XrT-rN-Lo1" firstAttribute="bottom" secondItem="waU-eW-k9p" secondAttribute="top" id="wM3-2H-WWG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Graph" id="jxa-hp-stJ"/>
+                    <connections>
+                        <outlet property="graphView" destination="XrT-rN-Lo1" id="z1u-Ne-9mK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ZX-t2-QSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="809" y="450"/>
+        </scene>
+        <!--Calculator-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="calculator_leishman" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CalculatorViewController" customModule="calculator_leishman" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,8 +65,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wfD-1K-Cbk">
-                                <rect key="frame" x="20" y="21" width="560" height="569"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wfD-1K-Cbk">
+                                <rect key="frame" x="20" y="21" width="560" height="535"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYB-yr-rDs">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
@@ -40,7 +88,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Da-l1-vDo">
-                                        <rect key="frame" x="0.0" y="21" width="560" height="549"/>
+                                        <rect key="frame" x="0.0" y="21" width="560" height="515"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pmi-3N-NfR">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="36"/>
@@ -50,13 +98,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="J6Q-Bg-cf3">
-                                                <rect key="frame" x="0.0" y="46" width="560" height="503"/>
+                                                <rect key="frame" x="0.0" y="46" width="560" height="469"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kIs-AN-l1K">
-                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="76"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="70"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhl-nL-BIa">
-                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -68,7 +116,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qs-fV-lMl">
-                                                                <rect key="frame" x="114" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="114" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -80,7 +128,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frb-GG-ZAx">
-                                                                <rect key="frame" x="228" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="228" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -92,7 +140,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKI-po-uCg">
-                                                                <rect key="frame" x="342" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="342" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -104,7 +152,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLU-kQ-JVb">
-                                                                <rect key="frame" x="456" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="456" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -118,10 +166,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xf7-6e-VxQ">
-                                                        <rect key="frame" x="0.0" y="86" width="560" height="76"/>
+                                                        <rect key="frame" x="0.0" y="80" width="560" height="70"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cH-ie-SQG">
-                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -133,7 +181,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmO-Hc-okp">
-                                                                <rect key="frame" x="114" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="114" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -145,7 +193,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpZ-OX-raW">
-                                                                <rect key="frame" x="228" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="228" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -157,7 +205,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9VB-br-3vJ">
-                                                                <rect key="frame" x="342" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="342" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -169,7 +217,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yil-4R-rQ0">
-                                                                <rect key="frame" x="456" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="456" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -183,10 +231,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Qp-g5-hxf">
-                                                        <rect key="frame" x="0.0" y="171" width="560" height="76"/>
+                                                        <rect key="frame" x="0.0" y="160" width="560" height="70"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDo-Xs-Hex">
-                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -198,7 +246,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViC-s3-TTU">
-                                                                <rect key="frame" x="114" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="114" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -210,7 +258,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9V-rs-kN0">
-                                                                <rect key="frame" x="228" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="228" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -222,7 +270,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDd-E7-8Wm">
-                                                                <rect key="frame" x="342" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="342" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -234,7 +282,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMW-lX-f20">
-                                                                <rect key="frame" x="456" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="456" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -248,10 +296,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="H5n-QT-pYe">
-                                                        <rect key="frame" x="0.0" y="257" width="560" height="75"/>
+                                                        <rect key="frame" x="0.0" y="240" width="560" height="70"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdG-Sw-nYD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="75"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -263,7 +311,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0o-Bt-ydP">
-                                                                <rect key="frame" x="114" y="0.0" width="104" height="75"/>
+                                                                <rect key="frame" x="114" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="1" green="0.26254789210172658" blue="0.26978233494491688" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -275,7 +323,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haR-QT-aHK">
-                                                                <rect key="frame" x="228" y="0.0" width="104" height="75"/>
+                                                                <rect key="frame" x="228" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="0.25053860720270543" green="0.78900049603174605" blue="0.32125330122966361" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -287,7 +335,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMy-yL-9N2">
-                                                                <rect key="frame" x="342" y="0.0" width="104" height="75"/>
+                                                                <rect key="frame" x="342" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" red="1" green="0.26254789210172658" blue="0.26978233494491688" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -299,7 +347,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVN-31-e2O">
-                                                                <rect key="frame" x="456" y="0.0" width="104" height="75"/>
+                                                                <rect key="frame" x="456" y="0.0" width="104" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -313,10 +361,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-ir-9Oq">
-                                                        <rect key="frame" x="0.0" y="342" width="560" height="76"/>
+                                                        <rect key="frame" x="0.0" y="319" width="560" height="70"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mw7-YO-eTe">
-                                                                <rect key="frame" x="0.0" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -328,7 +376,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2z-uk-0bf">
-                                                                <rect key="frame" x="114" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="95" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -340,7 +388,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rd4-hA-OXs">
-                                                                <rect key="frame" x="228" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="190" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -352,7 +400,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZ6-8R-9KY">
-                                                                <rect key="frame" x="342" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="285" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -364,7 +412,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUT-hM-8RQ">
-                                                                <rect key="frame" x="456" y="0.0" width="104" height="76"/>
+                                                                <rect key="frame" x="380" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -375,13 +423,25 @@
                                                                     <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ask-IG-zda"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9W-B3-UgN">
+                                                                <rect key="frame" x="475" y="0.0" width="85" height="70"/>
+                                                                <color key="backgroundColor" red="0.16725151630357962" green="0.7415888469386186" blue="0.9670905188593284" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                                                <state key="normal" title="G">
+                                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="wC6-sT-UJN" kind="showDetail" identifier="graphSegue" id="NXe-S5-bOL"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ilO-mg-Rhg">
-                                                        <rect key="frame" x="0.0" y="427" width="560" height="76"/>
+                                                        <rect key="frame" x="0.0" y="399" width="560" height="70"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n05-ak-Rga">
-                                                                <rect key="frame" x="0.0" y="0.0" width="85" height="76"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -393,7 +453,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoA-1u-iRZ">
-                                                                <rect key="frame" x="95" y="0.0" width="85" height="76"/>
+                                                                <rect key="frame" x="95" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -405,7 +465,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Hi-dg-L3T">
-                                                                <rect key="frame" x="190" y="0.0" width="85" height="76"/>
+                                                                <rect key="frame" x="190" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -417,7 +477,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kg5-Ib-ruN">
-                                                                <rect key="frame" x="285" y="0.0" width="85" height="76"/>
+                                                                <rect key="frame" x="285" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -429,7 +489,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEI-Q7-T7b">
-                                                                <rect key="frame" x="380" y="0.0" width="85" height="76"/>
+                                                                <rect key="frame" x="380" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -441,7 +501,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KwT-2T-veh">
-                                                                <rect key="frame" x="475" y="0.0" width="85" height="76"/>
+                                                                <rect key="frame" x="475" y="0.0" width="85" height="70"/>
                                                                 <color key="backgroundColor" white="0.48230217136703168" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -470,9 +530,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="wfD-1K-Cbk" secondAttribute="trailing" id="2vM-ct-2ji"/>
                             <constraint firstItem="wfD-1K-Cbk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="1" id="ML6-fh-vxL"/>
                             <constraint firstAttribute="leadingMargin" secondItem="wfD-1K-Cbk" secondAttribute="leading" id="Z7p-Gg-PhL"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wfD-1K-Cbk" secondAttribute="bottom" constant="10" id="xE4-cP-xhZ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wfD-1K-Cbk" secondAttribute="bottom" id="xE4-cP-xhZ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Calculator" id="Si5-uF-P4D"/>
                     <connections>
                         <outlet property="PendingLabel" destination="KWQ-UP-aBR" id="eQs-dh-F0R"/>
                         <outlet property="descriptionLabel" destination="VAD-iE-9zL" id="DJu-IS-JC6"/>
@@ -481,7 +542,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="297" y="308"/>
+            <point key="canvasLocation" x="809" y="-448"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CRh-YG-kSx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yo3-Jh-nkW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eZP-g7-8eA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="euT-Ns-ceI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="20Q-3y-WML" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3" y="-448"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5r7-MG-k7g">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wC6-sT-UJN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hWl-dG-x93">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jfX-LO-UBl" kind="relationship" relationship="rootViewController" id="6M5-5e-1Ew"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mpr-SN-cWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3" y="450"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="NXe-S5-bOL"/>
+    </inferredMetricsTieBreakers>
 </document>

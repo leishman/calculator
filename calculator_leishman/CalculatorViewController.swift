@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
     
 
     @IBOutlet weak var numericDisplay: UILabel!
@@ -118,6 +118,14 @@ class ViewController: UIViewController {
         displayValue = brain.result
         descriptionLabel.text = brain.description
         pendingLabel.text = brain.isPartialResult ? " ... " : "  = "
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("segue")
+        let destinationvc: UIViewController? = segue.destinationViewController
+        if let graphvc = destinationvc as? GraphViewController {
+            graphvc.program = brain.program
+        }
     }
     
 }
