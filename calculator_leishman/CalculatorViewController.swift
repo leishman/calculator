@@ -121,10 +121,20 @@ class CalculatorViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("segue")
-        let destinationvc: UIViewController? = segue.destinationViewController
+        var destinationvc: UIViewController? = segue.destinationViewController
+        if let navcon = destinationvc as? UINavigationController {
+            destinationvc = navcon.visibleViewController
+        }
         if let graphvc = destinationvc as? GraphViewController {
-            graphvc.program = brain.program
+            // set equation description
+            graphvc.equationString = brain.description
+                
+            // pass closure to GraphViewController
+            graphvc.graphFunction = {(num: Double) -> Double in
+                self.brain.setVariable("M", value: num)
+                return self.brain.result
+            }
+
         }
     }
     

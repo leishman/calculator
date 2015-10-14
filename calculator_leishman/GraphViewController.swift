@@ -10,25 +10,33 @@ import UIKit
 
 class GraphViewController: UIViewController {
     
-    var program: AnyObject = []
-
+    @IBOutlet weak var equationDescription: UILabel!
     
-    
+    var graphFunction: (Double -> Double)?
+    var equationString: String = " "
     
     @IBOutlet weak var graphView: GraphView! {
         didSet {
             graphView.addGestureRecognizer(UIPinchGestureRecognizer(target: graphView, action: "handleZoom:"))
             graphView.addGestureRecognizer(UIPanGestureRecognizer(target: graphView, action: "handlePan:"))
-            graphView.addGestureRecognizer(UITapGestureRecognizer(target: graphView, action: "handleDoubleTap:"))
+
+            // declare recognizer outside of argument in order to set required number of taps
+            // not sure if this is the best way to do this, but I did not like dragging the touch event onto UI builder
+            // I prefer keeping this logic in the same place
+            let doubleTapRecognizer = UITapGestureRecognizer(target: graphView, action: "handleDoubleTap:")
+            doubleTapRecognizer.numberOfTapsRequired = 2
+            graphView.addGestureRecognizer(doubleTapRecognizer)
+            
+            if graphFunction != nil {
+                graphView.graphFunction = graphFunction!
+            }
+            
+            equationDescription.text! = equationString
+            
+            
         }
     }
-
 }
 
 
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
     
