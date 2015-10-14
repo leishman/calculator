@@ -32,8 +32,6 @@ class GraphViewController: UIViewController {
             }
             
             equationDescription.text! = equationString
-            
-            
         }
     }
 }
