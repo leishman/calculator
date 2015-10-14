@@ -43,7 +43,6 @@ class AxesDrawer
 
     func drawAxesInRect(bounds: CGRect, origin: CGPoint, pointsPerUnit: CGFloat)
     {
-        print("drawing axes")
         CGContextSaveGState(UIGraphicsGetCurrentContext())
         color.set()
         let path = UIBezierPath()
